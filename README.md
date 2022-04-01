@@ -1,11 +1,11 @@
-# Full Stack User Management Boilerplate
+# Full Stack User Management Boilerplate (Mongo Version)
 
 ## Tech Stack
 
 - TypeScript
 - Next.js
-- Next-Auth.js
 - Tailwind CSS
-- PostgresSQL
-- TypeORM
+- MongoDB
+- Mongoose
+- Next-Auth.js
 - SWR

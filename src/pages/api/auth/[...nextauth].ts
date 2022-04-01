@@ -1,10 +1,8 @@
-import { TypeORMLegacyAdapter } from "@next-auth/typeorm-legacy-adapter";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import { NextApiRequest, NextApiResponse } from "next";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import "reflect-metadata";
-import * as entities from "../../../entities";
-import { connection } from "../../../utils/database";
+import { clientPromise } from "../../../utils/mongodb";
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
   return await NextAuth(req, res, {
@@ -26,8 +24,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         },
       }),
     ],
-    // TypeORM database
-    adapter: TypeORMLegacyAdapter(connection, { entities }),
+    adapter: MongoDBAdapter(clientPromise),
     secret: process.env.SECRET,
     session: {
       // Seconds - How long until an idle session expires and is no longer valid.
@@ -37,35 +34,16 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
       updateAge: 60 * 60 * 24 * 30, // 1 month
     },
     pages: {
-      signIn: "/",
+      signIn: "/signin",
       error: "/",
     },
-    // Cookies only accessible from HTTPS URLS
-    useSecureCookies: process.env.NODE_ENV !== "development",
-    // Production only cookie modifiers
-    cookies:
-      process.env.NODE_ENV !== "development"
-        ? {
-            sessionToken: {
-              name: `__Secure-next-auth.session-token`,
-              options: {
-                httpOnly: true,
-                sameSite: "lax",
-                path: "/",
-                secure: true,
-                domain: process.env.DOMAIN,
-              },
-            },
-          }
-        : undefined,
     // Debugging
-    debug: true,
+    debug: process.env.NODE_ENV === "development",
     // Callbacks
     callbacks: {
       // Return userId on session
       async session({ session, user }) {
-        session.userId = user.id;
-        return Promise.resolve(session);
+        return { ...session, user };
       },
     },
   });
