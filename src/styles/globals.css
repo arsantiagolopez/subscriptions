@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Basic&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.button {
+  @apply py-3 px-10 font-Basic text-white tracking-wider rounded-full shadow-xl bg-primary;
+}
