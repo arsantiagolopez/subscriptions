@@ -51,13 +51,8 @@ const Authenticated: FC<Props> = ({ session }) => {
         </>
 
         <div className="hidden md:flex md:mx-10">
-          <Link href="/explore">
-            <button className="font-Basic text-primary mx-4">Explore</button>
-          </Link>
-          <Link href="/other">
-            <button className="font-Basic text-primary mx-4">
-              Member links
-            </button>
+          <Link href="/pricing">
+            <button className="font-Basic text-primary mx-4">Pricing</button>
           </Link>
         </div>
       </div>

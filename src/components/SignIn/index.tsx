@@ -20,7 +20,7 @@ const SignIn: FC<Props> = ({ providers }) => {
   return (
     <div className="flex flex-col h-full items-center justify-center">
       <h1 className="font-Basic text-3xl tracking-tight py-6">
-        Let's get you in.
+        Let&apos;s get you in.
       </h1>
 
       {socialProviders &&

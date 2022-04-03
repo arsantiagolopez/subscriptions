@@ -1,0 +1,61 @@
+import { NextApiRequest, NextApiResponse } from "next";
+import Stripe from "stripe";
+import { Price } from "../../../models/Price";
+import { dbConnect } from "../../../utils/dbConnect";
+
+/**
+ * Update or create a product price.
+ * @param price - Stripe price data.
+ */
+const upsertPrice = async (price: Stripe.Price) => {
+  const {
+    id,
+    active,
+    currency,
+    nickname,
+    type,
+    unit_amount,
+    recurring,
+    metadata,
+  } = price;
+
+  const data = {
+    id,
+    product_id: typeof price.product === "string" ? price.product : "",
+    active,
+    currency,
+    description: nickname ?? undefined,
+    type,
+    unit_amount,
+    interval: recurring?.interval,
+    interval_count: recurring?.interval_count,
+    trial_period_days: recurring?.trial_period_days,
+    metadata,
+  };
+
+  try {
+    await Price.findByIdAndUpdate(id, data, { upsert: true });
+
+    // Successfully upserted
+    console.log(`Price inserted/updated: ${price.id}`);
+  } catch (error: any) {
+    console.log(error);
+  }
+};
+
+// Main
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  // const data = (await getSession({ req })) as unknown as UserSession;
+  const { method } = req;
+
+  await dbConnect();
+
+  switch (method) {
+    default:
+      return res.status(405).end(`Method ${method} Not Allowed`);
+  }
+};
+
+export { upsertPrice };
+
+export default handler;

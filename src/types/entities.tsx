@@ -9,3 +9,8 @@ export interface UserEntity {
   isAdmin: boolean;
   createdAt: Date;
 }
+
+export interface UserSession {
+  expires: string;
+  user: UserEntity;
+}

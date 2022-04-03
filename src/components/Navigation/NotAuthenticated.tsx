@@ -33,13 +33,8 @@ const NotAuthenticated: FC<Props> = () => {
         </>
 
         <div className="hidden md:flex md:mx-10">
-          <Link href="/how">
-            <button className="font-Basic text-primary mx-4">
-              How it works
-            </button>
-          </Link>
-          <Link href="/Help">
-            <button className="font-Basic text-primary mx-4">Help</button>
+          <Link href="/pricing">
+            <button className="font-Basic text-primary mx-4">Pricing</button>
           </Link>
         </div>
       </div>
