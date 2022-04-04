@@ -18,7 +18,7 @@ const NotAuthenticated: FC<Props> = () => {
   };
 
   return (
-    <div className="fixed z-50 bg-white flex items-center justify-center h-16 md:h-20 w-screen shadow-lg shadow-gray-100 px-6 md:px-8">
+    <div className="fixed z-50 bg-primary shadow-neutral-900 shadow-xl flex items-center justify-center h-16 md:h-20 w-screen px-6 md:px-8">
       {/* Left */}
       <div className="z-50 flex flex-row h-full items-center">
         <>
@@ -26,7 +26,7 @@ const NotAuthenticated: FC<Props> = () => {
             <Logo />
           </div>
           <Link href="/">
-            <h1 className="font-Basic text-xl text-primary tracking-tighter cursor-pointer">
+            <h1 className="font-Basic text-xl text-white tracking-tighter cursor-pointer">
               {BRAND_NAME}
             </h1>
           </Link>
@@ -34,7 +34,7 @@ const NotAuthenticated: FC<Props> = () => {
 
         <div className="hidden md:flex md:mx-10">
           <Link href="/pricing">
-            <button className="font-Basic text-primary mx-4">Pricing</button>
+            <button className="font-Basic text-white mx-4">Pricing</button>
           </Link>
         </div>
       </div>
@@ -48,14 +48,12 @@ const NotAuthenticated: FC<Props> = () => {
 
         <div className="hidden md:flex flex-row h-full items-center">
           <Link href="/signin">
-            <a className="font-Basic tracking-tight self-center pr-2 md:pr-4">
+            <a className="font-Basic tracking-wide text-white md:px-4 self-center">
               Sign in
             </a>
           </Link>
           <Link href="/register">
-            <button className="font-Basic text-sm text-white bg-primary px-6 py-1.5 ml-2 rounded-full hover:bg-secondary">
-              Get started
-            </button>
+            <button className="button py-1.5 px-6 ml-2">Get started</button>
           </Link>
         </div>
       </div>

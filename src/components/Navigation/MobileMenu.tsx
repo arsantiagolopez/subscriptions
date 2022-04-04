@@ -16,9 +16,9 @@ const MobileMenu: FC<Props> = ({ isMenuOpen, setIsMenuOpen }) => {
   return (
     <>
       {isMenuOpen ? (
-        <IoCloseSharp className="z-50" />
+        <IoCloseSharp className="z-50 text-white" />
       ) : (
-        <IoMenuSharp className="z-50" />
+        <IoMenuSharp className="z-50 text-white" />
       )}
 
       <Transition appear show={isMenuOpen} as={Fragment}>
@@ -50,7 +50,7 @@ const MobileMenu: FC<Props> = ({ isMenuOpen, setIsMenuOpen }) => {
             >
               <div className="z-50 flex flex-col items-start w-full p-4 pt-28 text-left transition-all transform font-Basic text-3xl leading-loose text-secondary">
                 <Link href="/pricing">
-                  <button className="font-Basic text-primary">Pricing</button>
+                  <button className="font-Basic text-white">Pricing</button>
                 </Link>
 
                 <button

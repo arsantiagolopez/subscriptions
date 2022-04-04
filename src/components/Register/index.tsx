@@ -19,7 +19,7 @@ const Register: FC<Props> = ({ providers }) => {
 
   return (
     <div className="flex flex-col h-full items-center justify-center">
-      <h1 className="font-Basic text-3xl tracking-tight py-6">
+      <h1 className="font-Basic text-white text-3xl tracking-tight py-6">
         Create an account.
       </h1>
 
@@ -32,7 +32,7 @@ const Register: FC<Props> = ({ providers }) => {
                 callbackUrl: `${process.env.NEXTAUTH_URL}`,
               })
             }
-            className={`button w-fit flex flex-row items-center ${
+            className={`button py-3 px-10 w-fit flex flex-row items-center ${
               Object.values(socialProviders).length - 1 !== index && "mb-2"
             }`}
           >
@@ -48,7 +48,7 @@ const Register: FC<Props> = ({ providers }) => {
           </button>
         ))}
 
-      <p className="text-sm py-6 text-tertiary">
+      <p className="text-sm py-6 text-fourth">
         By continuing, I agree to {BRAND_NAME}&apos;s <u>Privacy Policy</u> and{" "}
         <u>Terms of Use.</u>
       </p>

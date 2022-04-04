@@ -34,7 +34,7 @@ const Authenticated: FC<Props> = ({ session }) => {
   return (
     <div
       className={`fixed z-50 flex items-center justify-between h-16 md:h-20 w-screen px-6 md:px-8 transition-all duration-200 ease-in-out ${
-        isMenuOpen ? "bg-none" : "bg-white shadow-lg shadow-gray-100"
+        isMenuOpen ? "bg-none" : "bg-primary shadow-xl shadow-neutral-900"
       }`}
     >
       {/* Left */}
@@ -44,7 +44,7 @@ const Authenticated: FC<Props> = ({ session }) => {
             <Logo />
           </div>
           <Link href="/">
-            <h1 className="font-Basic text-xl text-primary tracking-tighter cursor-pointer">
+            <h1 className="font-Basic text-xl text-white tracking-tighter cursor-pointer">
               {BRAND_NAME}
             </h1>
           </Link>
@@ -52,7 +52,7 @@ const Authenticated: FC<Props> = ({ session }) => {
 
         <div className="hidden md:flex md:mx-10">
           <Link href="/pricing">
-            <button className="font-Basic text-primary mx-4">Pricing</button>
+            <button className="font-Basic text-white mx-4">Pricing</button>
           </Link>
         </div>
       </div>
@@ -66,15 +66,12 @@ const Authenticated: FC<Props> = ({ session }) => {
 
         <div className="hidden md:flex flex-row h-full items-center">
           <Link href="/signin">
-            <a className="font-Basic tracking-tight self-center pr-2 md:pr-4">
+            <a className="font-Basic text-white tracking-tight self-center pr-2 md:pr-4">
               Hi, {user?.name}!
             </a>
           </Link>
 
-          <button
-            onClick={handleSignOut}
-            className="font-Basic text-sm text-white bg-primary px-6 py-1.5 ml-2 rounded-full hover:bg-secondary"
-          >
+          <button onClick={handleSignOut} className="button py-1.5 px-6 ml-2">
             Sign out
           </button>
         </div>
