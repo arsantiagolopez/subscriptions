@@ -1,35 +1,35 @@
 import mongoose from "mongoose";
-import { UserDetails as UserDetailsSchema } from "../types";
+import { UserProfile as UserProfileSchema } from "../types";
 
 const { model, models, Schema } = mongoose;
 
-const UserDetailsSchema = new Schema<UserDetailsSchema>(
+const UserProfileSchema = new Schema<UserProfileSchema>(
   {
     id: {
       type: String,
       required: true,
     },
-    first_name: {
-      type: String,
-      required: true,
-    },
-    last_name: {
-      type: String,
-      required: true,
-    },
-    full_name: {
+    name: {
       type: String,
       required: false,
     },
-    avatar_url: {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    image: {
       type: String,
       required: false,
     },
-    billing_address: {
+    billingAddress: {
       type: Schema.Types.Mixed,
       required: false,
     },
-    payment_method: {
+    paymentMethod: {
       type: Schema.Types.Mixed,
       required: false,
     },
@@ -38,8 +38,8 @@ const UserDetailsSchema = new Schema<UserDetailsSchema>(
 );
 
 // Prevent model overwrite upon initial compile
-const UserDetails =
-  models.UserDetails ||
-  model<UserDetailsSchema>("UserDetails", UserDetailsSchema);
+const UserProfile =
+  models.UserProfile ||
+  model<UserProfileSchema>("UserProfile", UserProfileSchema);
 
-export { UserDetails };
+export { UserProfile };

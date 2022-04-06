@@ -45,7 +45,7 @@ const upsertPrice = async (price: Stripe.Price) => {
 
 // Main
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  // const data = (await getSession({ req })) as unknown as UserSession;
+  // const data = (await getSession({ req }))
   const { method } = req;
 
   await dbConnect();

@@ -1,7 +1,8 @@
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import { NextApiRequest, NextApiResponse } from "next";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { UserEntity } from "../../../types";
+import { CustomMongoDbAdapter } from "../../../utils/CustomMongoDbAdapter";
 import { clientPromise } from "../../../utils/mongodb";
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
@@ -24,7 +25,11 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         },
       }),
     ],
-    adapter: MongoDBAdapter(clientPromise),
+    // Custom Mongodb adapter
+    adapter: CustomMongoDbAdapter({
+      db: (await clientPromise).db("main"),
+    }),
+    // adapter: MongoDBAdapter(clientPromise),
     secret: process.env.SECRET,
     session: {
       // Seconds - How long until an idle session expires and is no longer valid.
@@ -43,7 +48,12 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
     callbacks: {
       // Return userId on session
       async session({ session, user }) {
-        return { ...session, user };
+        session = {
+          user: { ...session?.user, ...user } as UserEntity,
+          expires: session?.expires,
+        };
+
+        return session;
       },
     },
   });

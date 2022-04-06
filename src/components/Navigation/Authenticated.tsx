@@ -33,7 +33,7 @@ const Authenticated: FC<Props> = ({ session }) => {
 
   return (
     <div
-      className={`fixed z-50 flex items-center justify-between h-16 md:h-20 w-screen px-6 md:px-8 transition-all duration-200 ease-in-out ${
+      className={`fixed z-50 flex items-center justify-between h-16 md:h-20 w-screen px-5 md:px-[15%] transition-all duration-200 ease-in-out ${
         isMenuOpen ? "bg-none" : "bg-primary shadow-xl shadow-neutral-900"
       }`}
     >
@@ -51,8 +51,14 @@ const Authenticated: FC<Props> = ({ session }) => {
         </>
 
         <div className="hidden md:flex md:mx-10">
+          <Link href="/dashboard">
+            <button className="font-Basic text-white mx-4">Dashboard</button>
+          </Link>
           <Link href="/pricing">
             <button className="font-Basic text-white mx-4">Pricing</button>
+          </Link>
+          <Link href="/testimonials">
+            <button className="font-Basic text-white mx-4">Testimonials</button>
           </Link>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
-import { UserEntity, UserSession } from "../../../types";
+import { UserEntity } from "../../../types";
 import { dbConnect } from "../../../utils/dbConnect";
 import { getURL } from "../../../utils/getURL";
 import { stripe } from "../../../utils/stripe";
@@ -54,7 +54,7 @@ const createCheckoutSession = async (
 
 // Main
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const data = (await getSession({ req })) as unknown as UserSession;
+  const data = await getSession({ req });
 
   const { method } = req;
 

@@ -3,8 +3,8 @@ import { getSession } from "next-auth/react";
 import Stripe from "stripe";
 import { Customer } from "../../../models/Customer";
 import { Subscription } from "../../../models/Subscription";
-import { UserDetails } from "../../../models/UserDetails";
-import { UserEntity, UserSession } from "../../../types";
+import { UserProfile } from "../../../models/UserProfile";
+import { UserEntity } from "../../../types";
 import { dbConnect } from "../../../utils/dbConnect";
 import { getURL } from "../../../utils/getURL";
 import { stripe } from "../../../utils/stripe";
@@ -78,11 +78,11 @@ const manageSubscription = async (
 
     console.log(`Inserted/updated subscription [${id}] for user [${user_id}]`);
 
-    // For a new subscription copy the billing details to the customer object.
+    // For a new subscription add the billing details to the customer object.
     // NOTE: This is a costly operation and should happen at the very end.
     if (createAction && default_payment_method && user_id) {
       //@ts-ignore
-      await copyBillingDetailsToCustomer(
+      await addBillingDetails(
         user_id,
         default_payment_method as Stripe.PaymentMethod
       );
@@ -93,11 +93,11 @@ const manageSubscription = async (
 };
 
 /**
- * Copies the billing details from the payment method to the customer object.
+ * Add the billing details from the payment method to the customer object.
  * @param user_id - Stripe user ID.
  * @param payment_method - Stripe payment method.
  */
-const copyBillingDetailsToCustomer = async (
+const addBillingDetails = async (
   user_id: string,
   payment_method: Stripe.PaymentMethod
 ) => {
@@ -117,8 +117,11 @@ const copyBillingDetailsToCustomer = async (
       payment_method: payment_method[type],
     };
 
-    // Update UserDetails record
-    await UserDetails.findByIdAndUpdate(user_id, details, { upsert: true });
+    // @todo
+    console.log("*** Details from addBillingDetails: ", details);
+
+    // Update UserProfile record
+    await UserProfile.findByIdAndUpdate(user_id, details, { upsert: true });
   } catch (error: any) {
     console.log("Could not copy billing deatils to customer.");
   }
@@ -204,7 +207,7 @@ const createPortalLink = async (
 
 // Main
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const data = (await getSession({ req })) as unknown as UserSession;
+  const data = await getSession({ req });
 
   const { method } = req;
 

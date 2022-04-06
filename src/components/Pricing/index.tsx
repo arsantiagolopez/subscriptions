@@ -14,7 +14,7 @@ const Pricing: FC<Props> = () => {
       <div className="flex flex-row max-w-full md:max-w-6xl mx-auto my-12 md:px-8">
         <div className="flex flex-col justify-center md:flex-row w-full h-full">
           {/* First card */}
-          <div className="w-full max-w-md sm:w-2/3 lg:w-1/3  h-full shadow-lg rounded-lg bg-secondary mx-auto my-auto">
+          <div className="w-full max-w-md sm:w-2/3 lg:w-1/3  h-full shadow-lg rounded-lg bg-primary mx-auto my-auto">
             <div className="overflow-hidden h-full">
               <div className="text-center text-sm sm:text-md max-w-sm mx-auto mt-2 text-fourth px-8 lg:px-6 h-full">
                 <h1 className="font-Basic text-fourth tracking-widest text-xl py-6 font-bold uppercase p-3 pb-0 text-center">
@@ -48,8 +48,8 @@ const Pricing: FC<Props> = () => {
           </div>
 
           {/* Most popular */}
-          <div className="z-10 w-full max-w-md sm:w-2/3 lg:w-1/3 h-full lg:mx-4 shadow-lg rounded-lg bg-secondary mx-auto my-6 md:my-auto">
-            <div className="animate-pulse text-white text-sm leading-none rounded-t-lg bg-fourth uppercase py-4 text-center tracking-widest">
+          <div className="z-10 w-full max-w-md sm:w-2/3 lg:w-1/3 h-full lg:mx-4 shadow-lg rounded-lg bg-primary mx-auto my-6 md:my-auto">
+            <div className="animate-pulse text-white text-sm leading-none rounded-t-lg uppercase py-4 text-center tracking-widest bg-gradient-to-br from-white to-gray-500">
               Most Popular
             </div>
             <div className="text-center text-sm sm:text-md max-w-sm mx-auto mt-2 text-fourth px-8 lg:px-6">
@@ -87,7 +87,7 @@ const Pricing: FC<Props> = () => {
           </div>
 
           {/* Most expensive */}
-          <div className="w-full max-w-md sm:w-2/3 lg:w-1/3 h-full shadow-lg rounded-lg bg-secondary mx-auto my-auto">
+          <div className="w-full max-w-md sm:w-2/3 lg:w-1/3 h-full shadow-lg rounded-lg bg-primary mx-auto my-auto">
             <div className=" text-fourth overflow-hidden h-full">
               <div className="text-center text-sm sm:text-md max-w-sm mx-auto mt-2 text-fourth px-8 lg:px-8">
                 <h1 className="font-Basic text-fourth tracking-widest text-xl py-6 font-bold uppercase p-3 pb-0 text-center">

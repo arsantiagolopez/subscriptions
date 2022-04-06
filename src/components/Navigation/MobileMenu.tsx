@@ -49,8 +49,18 @@ const MobileMenu: FC<Props> = ({ isMenuOpen, setIsMenuOpen }) => {
               leaveTo="opacity-0 scale-95"
             >
               <div className="z-50 flex flex-col items-start w-full p-4 pt-28 text-left transition-all transform font-Basic text-3xl leading-loose text-secondary">
+                <Link href="/dashboard">
+                  <button className="font-Basic text-white mx-4">
+                    Dashboard
+                  </button>
+                </Link>
                 <Link href="/pricing">
                   <button className="font-Basic text-white">Pricing</button>
+                </Link>
+                <Link href="/testimonials">
+                  <button className="font-Basic text-white mx-4">
+                    Testimonials
+                  </button>
                 </Link>
 
                 <button

@@ -34,5 +34,6 @@
     "emitDecoratorMetadata": true
   },
   "include": ["next-env.d.ts", "./src/**/*.tsx", "./src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "typeRoots": ["./src/types"]
 }

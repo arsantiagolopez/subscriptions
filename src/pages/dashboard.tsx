@@ -2,11 +2,11 @@ import Head from "next/head";
 import React from "react";
 import { Dashboard } from "../components/Dashboard";
 import { Layout } from "../components/Layout";
-import { ProtectedPage } from "../types";
+import { MemberPage } from "../types";
 
 interface Props {}
 
-const DashboardPage: ProtectedPage<Props> = () => {
+const DashboardPage: MemberPage<Props> = () => {
   const dashboardProps = {};
 
   return (
@@ -22,6 +22,6 @@ const DashboardPage: ProtectedPage<Props> = () => {
   );
 };
 
-DashboardPage.isProtected = true;
+DashboardPage.isMember = true;
 
 export default DashboardPage;

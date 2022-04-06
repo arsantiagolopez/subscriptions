@@ -3,16 +3,23 @@ import { NextComponentType, NextPage, NextPageContext } from "next";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps as NextAppProps } from "next/app";
 import { SWRConfig } from "swr";
-import { ProtectedRoute } from "../components/ProtectedRoute";
+import { AdminRoute } from "../components/AdminRoute";
+import { MemberRoute } from "../components/MemberRoute";
 import "../styles/globals.css";
 
-interface IsProtectedProp {
-  isProtected?: boolean;
+interface IsAdminProp {
+  isAdmin?: boolean;
+}
+
+interface IsMemberProp {
+  isMember?: boolean;
 }
 
 // Custom type to override Component type
 type AppProps<P = any> = {
-  Component: NextComponentType<NextPageContext, any, {}> & IsProtectedProp;
+  Component: NextComponentType<NextPageContext, any, {}> &
+    IsAdminProp &
+    IsMemberProp;
 } & Omit<NextAppProps<P>, "Component">;
 
 const MyApp: NextPage<AppProps> = ({
@@ -25,10 +32,14 @@ const MyApp: NextPage<AppProps> = ({
         fetcher: (url) => axios(url).then((res) => res.data),
       }}
     >
-      {Component.isProtected ? (
-        <ProtectedRoute>
+      {Component.isAdmin ? (
+        <AdminRoute>
           <Component {...pageProps} />
-        </ProtectedRoute>
+        </AdminRoute>
+      ) : Component.isMember ? (
+        <MemberRoute>
+          <Component {...pageProps} />
+        </MemberRoute>
       ) : (
         <Component {...pageProps} />
       )}
