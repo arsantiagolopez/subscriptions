@@ -1,16 +1,16 @@
-name: minute-cron-job
-on:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: "*/1 * * * *"
-jobs:
-  cron:
-    runs-on: ubuntu-latest
-    steps:
-      - name: minute-cron-job
-        run: |
-          curl --request POST \
-          --url 'https://subscriptions-test.vercel.app/api/scrape' \
-          --header 'Authorization: Bearer ${{ secrets.ACTION_KEY }}'
+# name: minute-cron-job
+# on:
+#   push:
+#     branches:
+#       - main
+#   schedule:
+#     - cron: "*/1 * * * *"
+# jobs:
+#   cron:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: minute-cron-job
+#         run: |
+#           curl --request POST \
+#           --url 'https://subscriptions-test.vercel.app/api/scrape' \
+#           --header 'Authorization: Bearer ${{ secrets.ACTION_KEY }}'
