@@ -12,5 +12,5 @@ jobs:
       - name: minute-cron-job
         run: |
           curl --request POST \
-          --url 'https://subscriptions-test.com/api/scrape' \
+          --url 'https://subscriptions-test.vercel.app/api/scrape' \
           --header 'Authorization: Bearer ${{ secrets.ACTION_KEY }}'
