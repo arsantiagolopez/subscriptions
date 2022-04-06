@@ -1,14 +1,10 @@
 import mongoose from "mongoose";
-import { UserProfile as UserProfileSchema } from "../types";
+import { UserProfileEntity } from "../types";
 
 const { model, models, Schema } = mongoose;
 
-const UserProfileSchema = new Schema<UserProfileSchema>(
+const UserProfileSchema = new Schema<UserProfileEntity>(
   {
-    id: {
-      type: String,
-      required: true,
-    },
     name: {
       type: String,
       required: false,
@@ -40,6 +36,6 @@ const UserProfileSchema = new Schema<UserProfileSchema>(
 // Prevent model overwrite upon initial compile
 const UserProfile =
   models.UserProfile ||
-  model<UserProfileSchema>("UserProfile", UserProfileSchema);
+  model<UserProfileEntity>("UserProfile", UserProfileSchema);
 
 export { UserProfile };

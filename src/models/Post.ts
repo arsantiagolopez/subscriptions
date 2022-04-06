@@ -5,10 +5,6 @@ const { model, models, Schema } = mongoose;
 
 const PostSchema = new Schema<PostEntity>(
   {
-    id: {
-      type: String,
-      required: true,
-    },
     platformId: {
       type: String,
       required: true,

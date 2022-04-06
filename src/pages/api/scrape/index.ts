@@ -1,47 +1,45 @@
 import moment from "moment";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
-import { Post } from "../../../models/Post";
 import { scrapeReddit } from "../../../puppeteer";
 import { PostEntity } from "../../../types";
-import { convertPastToDate } from "../../../utils/convertPastToDate";
 import { dbConnect } from "../../../utils/dbConnect";
 
 // Scrape recent posts from all platforms
-const scrapeAll = async (
-  _: NextApiRequest,
-  res: NextApiResponse
-): Promise<PostEntity[] | void> => {
-  try {
-    const redditPosts = await fetchRedditPosts();
+// const scrapeAll = async (
+//   _: NextApiRequest,
+//   res: NextApiResponse
+// ): Promise<PostEntity[] | void> => {
+//   try {
+//     const redditPosts = await fetchRedditPosts();
 
-    // Create post entities
-    for await (const post of redditPosts) {
-      let { platformId, timestamp } = post;
+//     // Create post entities
+//     for await (const post of redditPosts) {
+//       let { platformId, timestamp } = post;
 
-      // Create timestamp from date
-      timestamp = moment(convertPastToDate(timestamp)).format("LLLL");
+//       // Create timestamp from date
+//       timestamp = moment(convertPastToDate(timestamp)).format("LLLL");
 
-      await Post.findOneAndUpdate(
-        { platformId },
-        {
-          ...post,
-          timestamp,
-        },
-        {
-          upsert: true,
-        }
-      );
-    }
+//       await Post.findOneAndUpdate(
+//         { platformId },
+//         {
+//           ...post,
+//           timestamp,
+//         },
+//         {
+//           upsert: true,
+//         }
+//       );
+//     }
 
-    // Only keep last 100
+//     // Only keep last 100
 
-    return res.status(200).json(redditPosts);
-  } catch (error) {
-    console.log(error);
-    return res.status(400).json({ message: error });
-  }
-};
+//     return res.status(200).json(redditPosts);
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(400).json({ message: error });
+//   }
+// };
 
 // Scrape test with github cron jobs
 const scrapeTest = async (_: NextApiRequest, res: NextApiResponse) => {

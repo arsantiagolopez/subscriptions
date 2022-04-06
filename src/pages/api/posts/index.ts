@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
 import { Post } from "../../../models/Post";
 import { PostEntity } from "../../../types";
 import { dbConnect } from "../../../utils/dbConnect";
@@ -46,7 +45,7 @@ const getRedditPosts = async (
       b.timestamp.valueOf() > a.timestamp.valueOf() ? 1 : -1
     );
 
-    return posts;
+    return res.status(200).json(posts);
   } catch (error) {
     console.log(error);
     return [];
@@ -62,7 +61,7 @@ const getRedditPosts = async (
 const getTwitterPosts = async (
   _: NextApiRequest,
   res: NextApiResponse
-): Promise<PostEntity[]> => {
+): Promise<PostEntity[] | void> => {
   try {
     let posts: PostEntity[] = await Post.find();
 
@@ -71,7 +70,7 @@ const getTwitterPosts = async (
       b.timestamp.valueOf() > a.timestamp.valueOf() ? 1 : -1
     );
 
-    return posts;
+    return res.status(200).json(posts);
   } catch (error) {
     console.log(error);
     return [];
@@ -104,10 +103,10 @@ const getInstagramPosts = async (
 
 // Main
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const data = await getSession({ req });
+  // const data = await getSession({ req });
   const { method, query } = req;
 
-  const userId = data?.user.id;
+  // const userId = data?.user.id;
   // const isAdmin = data?.user.isAdmin;
 
   await dbConnect();

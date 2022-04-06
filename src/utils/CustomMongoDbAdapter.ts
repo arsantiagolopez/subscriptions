@@ -182,12 +182,12 @@ const CustomMongoDbAdapter = (options: Options) => {
         (await UserProfile.findOne<UserProfileEntity>({
           userId: session.userId,
         })) || {};
-      const { password, ...userProps } = user;
+      // const { password, ...userProps } = user;
       // const hasPassword = password ? true : false;
       return {
         user: {
           ...from(profile),
-          ...from(userProps),
+          // ...from(userProps),
           // hasPassword,
         } as AdapterUser,
         session: from(session) as AdapterSession,

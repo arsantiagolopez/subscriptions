@@ -1,33 +1,31 @@
-import { useSession } from "next-auth/react";
-import React, { FC, useState } from "react";
-import axios from "../../axios";
+import React, { FC } from "react";
 
 interface Props {}
 
 const Account: FC<Props> = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { data } = useSession();
+  // const { data } = useSession();
 
-  // const { isLoading, subscription, userProfile } = useUser();
+  // // const { isLoading, subscription, userProfile } = useUser();
 
-  const redirectToCustomerPortal = async () => {
-    setIsLoading(true);
+  // const redirectToCustomerPortal = async () => {
+  //   setIsLoading(true);
 
-    // Create portal link
-    try {
-      const { status } = await axios.post("/api/create-portal-link");
+  //   // Create portal link
+  //   try {
+  //     const { status } = await axios.post("/api/create-portal-link");
 
-      if (status !== 200) {
-        console.log("Could not create portal link.");
-        setIsLoading(false);
-      }
-    } catch (error) {
-      if (error) return alert((error as Error).message);
-    }
+  //     if (status !== 200) {
+  //       console.log("Could not create portal link.");
+  //       setIsLoading(false);
+  //     }
+  //   } catch (error) {
+  //     if (error) return alert((error as Error).message);
+  //   }
 
-    setIsLoading(false);
-  };
+  //   setIsLoading(false);
+  // };
 
   // const subscriptionPrice =
   //   subscription &&
